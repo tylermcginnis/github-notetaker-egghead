@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tylermcginnis/github-notetaker-egghead",
   "dependencies": {
+    "axios": "^0.5.4",
     "firebase": "^2.2.7",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
