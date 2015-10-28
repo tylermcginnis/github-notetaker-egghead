@@ -2,8 +2,8 @@ import React from 'react';
 
 class AddNote extends React.Component{
   handleSubmit(){
-    var newNote = this.refs.note.getDOMNode().value;
-    this.refs.note.getDOMNode().value = '';
+    var newNote = this.refs.note.value;
+    this.refs.note.value = '';
     this.props.addNote(newNote);
   }
   render(){
