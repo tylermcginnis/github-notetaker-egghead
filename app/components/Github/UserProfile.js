@@ -4,8 +4,8 @@ class UserProfiles extends React.Component{
   render(){
     const {bio} = this.props;
     const fieldNames = ['name', 'login', 'email', 'location', 'company', 'followers', 'following', 'public_repos', 'blog'];
-    const fields = fieldNames.map((field) => {
-      return bio[field] && <li className="list-group-item">Name: {bio[field]}</li>
+    const fields = fieldNames.map((field, index) => {
+      return bio[field] && <li key={index} className="list-group-item">Name: {bio[field]}</li>
     });
 
     return (
