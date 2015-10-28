@@ -3,7 +3,7 @@ import React from 'react';
 class UserProfiles extends React.Component{
   render(){
     const {bio} = this.props;
-    const fieldsNames = ['name', 'login', 'email', 'location', 'company', 'followers', 'following', 'public_repos', 'blog'];
+    const fieldNames = ['name', 'login', 'email', 'location', 'company', 'followers', 'following', 'public_repos', 'blog'];
     const fields = fieldNames.map((field) => {
       return bio[field] && <li className="list-group-item">Name: {bio[field]}</li>
     });
