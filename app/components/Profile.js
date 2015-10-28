@@ -17,13 +17,14 @@ class Profile extends React.Component{
     };
   }
   init(){
-    this.ref = base.bindToState(this.router.getCurrentParams().username, {
+    const {username} = this.props.params;
+    this.ref = base.bindToState(username, {
       context: this,
       asArray: true,
       state: 'notes'
     });
 
-    helpers.getGithubInfo(this.router.getCurrentParams().username)
+    helpers.getGithubInfo(username)
       .then((dataObj) => {
         this.setState({
           bio: dataObj.bio,
@@ -31,9 +32,7 @@ class Profile extends React.Component{
         });
       });
   }
-  componentWillMount(){
-    this.router = this.context.router;
-  }
+
   componentDidMount(){
     this.init();
   }
@@ -45,12 +44,13 @@ class Profile extends React.Component{
     this.init();
   }
   handleAddNote(newNote){
-    base.post(this.router.getCurrentParams().username, {
+    const {username} = this.props.params;
+    base.post(username, {
       data: this.state.notes.concat([newNote])
     });
   }
   render(){
-    var username = this.router.getCurrentParams().username;
+    const {username} = this.props.params;
     return (
       <div className="row">
         <div className="col-md-4">
@@ -68,10 +68,6 @@ class Profile extends React.Component{
       </div>
     )
   }
-};
-
-Profile.contextTypes = {
-  router: React.PropTypes.func.isRequired
 };
 
 export default Profile;
