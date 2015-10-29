@@ -1,5 +1,5 @@
 var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
+var Router = require('react-router');
 
 var Main = React.createClass({
   render: function(){
@@ -11,7 +11,7 @@ var Main = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <RouteHandler />
+          {this.props.children}
         </div>
       </div>
     )
