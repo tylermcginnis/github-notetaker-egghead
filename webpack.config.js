@@ -9,7 +9,11 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
+        loader: 'babel',
+        query: {
+          cacheDirectory: true,
+          presets: ['react']
+        }
       }
     ]
   }
