@@ -5,7 +5,6 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 
 var Profile = React.createClass({
-  mixins: [Router.State],
   getInitialState: function(){
     return {
       notes: ['note1', 'note2'],
@@ -14,7 +13,7 @@ var Profile = React.createClass({
     }
   },
   render: function(){
-    var username = this.getParams().username;
+    var username = this.props.params.username;
     return (
       <div className="row">
         <div className="col-md-4">

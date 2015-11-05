@@ -3,12 +3,12 @@ var Main = require('../components/Main');
 var Home = require('../components/Home');
 var Profile = require('../components/Profile');
 var Router = require('react-router');
-var DefaultRoute = Router.DefaultRoute;
+var IndexRoute = Router.IndexRoute;
 var Route = Router.Route;
 
 module.exports = (
-  <Route name="app" path="/" handler={Main}>
-    <Route name="profile" path="profile/:username" handler={Profile} />
-    <DefaultRoute handler={Home} />
+  <Route path="/" component={Main}>
+    <Route  path="profile/:username" component={Profile} />
+    <IndexRoute component={Home} />
   </Route>
 );
