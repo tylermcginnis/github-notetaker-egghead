@@ -5,10 +5,8 @@
 ### Instructions
 
 ```bash
-npm install webpack -g
-npm install webpack-dev-server -g
 npm install
 npm start
 ```
 
-This will install the required dependencies and start webpack.
+This will install the required dependencies and start webpack the webpack dev server. The app will then be available at [http://localhost:8080](http://localhost:8080).
