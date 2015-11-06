@@ -1,7 +1,19 @@
+var buildPath = require('path').join(__dirname, 'public');
 module.exports = {
   entry: "./app/App.js",
   output: {
-    filename: "public/bundle.js"
+    path: buildPath,
+    filename: "bundle.js",
+    publicPath: '/assets/'
+  },
+  devServer: {
+    inline: true,
+    progress: true,
+
+    // parse host and port from env so this is easy
+    // to customize
+    host: process.env.HOST,
+    port: process.env.PORT
   },
   module: {
     loaders: [

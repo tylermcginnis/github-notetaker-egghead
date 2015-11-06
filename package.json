@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --progress --colors --content-base public/"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,7 @@
     "babel-loader": "^6.0.1",
     "babel-preset-react": "^6.0.0",
     "node-libs-browser": "^0.5.2",
-    "webpack": "^1.12.11"
+    "webpack": "^1.12.3",
+    "webpack-dev-server": "^1.12.1"
   }
 }
