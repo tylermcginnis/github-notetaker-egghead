@@ -18,9 +18,10 @@
   "homepage": "https://github.com/tylermcginnis/github-notetaker-egghead",
   "dependencies": {
     "firebase": "^2.2.7",
-    "react": "^0.13.3",
-    "react-router": "^0.13.3",
-    "reactfire": "^0.4.0"
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0-rc4",
+    "reactfire": "^0.5.1"
   },
   "devDependencies": {
     "babel-core": "^6.1.2",
