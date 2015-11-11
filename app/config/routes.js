@@ -9,6 +9,6 @@ var Route = Router.Route;
 module.exports = (
     <Route path="/" component={Main}>
         <Route  path="profile/:username" component={Profile} />
-        <IndexRoute component={Main} />
+        <IndexRoute component={Home} />
     </Route>
 );
