@@ -6,9 +6,9 @@ var NotesList = React.createClass({
       return <li className="list-group-item" key={index}> {note} </li>
     });
     return (
-      <ul className="list-group">
-        {notes}
-      </ul>
+        <ul className="list-group">
+          {notes}
+        </ul>
     )
   }
 });

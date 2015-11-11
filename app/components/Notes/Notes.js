@@ -6,6 +6,7 @@ var Notes = React.createClass({
     username: React.PropTypes.string.isRequired,
     notes: React.PropTypes.array.isRequired
   },
+
   render: function(){
     return (
       <div>

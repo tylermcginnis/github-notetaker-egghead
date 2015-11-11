@@ -17,26 +17,26 @@ var Profile = React.createClass({
   },
   componentDidMount: function(){
     this.ref = new Firebase('https://github-note-taker.firebaseio.com');
-    var childRef = this.ref.child(this.getParams().username);
+    var childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
   },
   componentWillUnmount: function(){
     this.unbind('notes');
   },
   render: function(){
-    var username = this.getParams().username;
+    var username = this.props.params.username;
     return (
-      <div className="row">
-        <div className="col-md-4">
-          <UserProfile username={username} bio={this.state.bio}/>
+        <div className="row">
+          <div className="col-md-4">
+            <UserProfile username={username} bio={this.state.bio}/>
+          </div>
+          <div className="col-md-4">
+            <Repos username={username} repos={this.state.repos} />
+          </div>
+          <div className="col-md-4">
+            <Notes username={username} notes={this.state.notes} />
+          </div>
         </div>
-        <div className="col-md-4">
-          <Repos username={username} repos={this.state.repos} />
-        </div>
-        <div className="col-md-4">
-          <Notes username={username} notes={this.state.notes} />
-        </div>
-      </div>
     )
   }
 });
