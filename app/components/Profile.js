@@ -20,9 +20,6 @@ var Profile = React.createClass({
         var childRef = this.ref.child(this.props.params.username);
         this.bindAsArray(childRef, 'notes');
   },
-  componentWillUnmount: function(){
-        this.unbind('notes');
-  },
   render: function(){
     var username = this.props.params.username;
     return (

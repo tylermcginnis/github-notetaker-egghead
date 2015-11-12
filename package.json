@@ -28,6 +28,6 @@
     "babel-loader": "^6.0.1",
     "babel-preset-react": "^6.0.0",
     "node-libs-browser": "^0.5.2",
-    "webpack": "^1.9.11"
+    "webpack": "^1.12.4"
   }
 }
