@@ -11,7 +11,7 @@ var Main = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <RouteHandler />
+            {this.props.children}
         </div>
       </div>
     )
