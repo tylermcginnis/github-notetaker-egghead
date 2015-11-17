@@ -16,12 +16,14 @@ var Profile = React.createClass({
     }
   },
   componentDidMount: function(){
-    this.ref = new Firebase('https://github-note-taker.firebaseio.com');
+    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
     var childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
   },
   handleAddNote: function(newNote){
-    this.ref.child(this.props.params.username).set(this.state.notes.concat([newNote]));
+    var username = this.props.params.username;
+    var theNote = this.state.notes.concat(newNote);
+    this.ref.child(username).set(theNote);
   },
   render: function(){
     var username = this.props.params.username;
