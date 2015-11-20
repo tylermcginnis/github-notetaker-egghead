@@ -5,6 +5,7 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
+var _ = require('lodash');
 
 var Profile = React.createClass({
   mixins: [Router.State, ReactFireMixin],
@@ -21,9 +22,12 @@ var Profile = React.createClass({
     this.bindAsArray(childRef, 'notes');
   },
   handleAddNote: function(newNote){
-    var username = this.props.params.username;
-    var theNote = this.state.notes.concat(newNote);
-    this.ref.child(username).set(theNote);
+    var noteArr = [];
+    this.state.notes.forEach(function(note, i){
+       noteArr.push(_.pick(note, '.value'));
+    });
+    noteArr.push(newNote);
+    this.ref.child(this.props.params.username).set(noteArr);
   },
   render: function(){
     var username = this.props.params.username;
