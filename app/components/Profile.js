@@ -5,6 +5,7 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
+var _ = require('lodash');
 
 var Profile = React.createClass({
   mixins: [Router.State, ReactFireMixin],
@@ -16,33 +17,35 @@ var Profile = React.createClass({
     }
   },
   componentDidMount: function(){
-    this.ref = new Firebase('https://github-note-taker.firebaseio.com');
-    var childRef = this.ref.child(this.getParams().username);
+    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
+    var childRef = this.ref.child(this.props.params.username);
     this.bindAsArray(childRef, 'notes');
   },
-  componentWillUnmount: function(){
-    this.unbind('notes');
-  },
   handleAddNote: function(newNote){
-    this.ref.child(this.getParams().username).set(this.state.notes.concat([newNote]));
+    var noteArr = [];
+    this.state.notes.forEach(function(note, i){
+      noteArr.push(_.pick(note, '.value'));
+    });
+    noteArr.push(newNote);
+    this.ref.child(this.props.params.username).set(noteArr);
   },
   render: function(){
-    var username = this.getParams().username;
+    var username = this.props.params.username;
     return (
-      <div className="row">
-        <div className="col-md-4">
-          <UserProfile username={username} bio={this.state.bio}/>
+        <div className="row">
+          <div className="col-md-4">
+            <UserProfile username={username} bio={this.state.bio}/>
+          </div>
+          <div className="col-md-4">
+            <Repos username={username} repos={this.state.repos} />
+          </div>
+          <div className="col-md-4">
+            <Notes
+                username={username}
+                notes={this.state.notes}
+                addNote={this.handleAddNote} />
+          </div>
         </div>
-        <div className="col-md-4">
-          <Repos username={username} repos={this.state.repos} />
-        </div>
-        <div className="col-md-4">
-          <Notes
-            username={username}
-            notes={this.state.notes}
-            addNote={this.handleAddNote} />
-        </div>
-      </div>
     )
   }
 });

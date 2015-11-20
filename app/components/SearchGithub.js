@@ -1,12 +1,12 @@
 var React = require('react');
-var Router = require('react-router');
+var History = require('react-router').History;
 
 var SearchGithub = React.createClass({
-  mixins: [Router.Navigation],
+  mixins: [History],
   handleSubmit: function(){
-    var username = this.refs.username.getDOMNode().value;
-    this.refs.username.getDOMNode().value = '';
-    this.transitionTo('profile', {username: username});
+    var username = this.refs.username.value;
+    this.refs.username.value = '';
+    this.history.pushState(null , "profile/" + username);
   },
   render: function(){
     return (
