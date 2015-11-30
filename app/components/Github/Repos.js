@@ -9,7 +9,7 @@ var Repos = React.createClass({
     return (
       <div> REPOS<br />
         Username: {this.props.username} <br />
-        REPOS: {this.props.repos} </div>
+        REPOS: {console.log(this.props.repos)} </div>
     )
   }
 });

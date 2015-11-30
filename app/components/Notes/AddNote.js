@@ -6,8 +6,8 @@ var AddNote = React.createClass({
     addNote: React.PropTypes.func.isRequired
   },
   handleSubmit: function(){
-    var newNote = this.refs.note.getDOMNode().value;
-    this.refs.note.getDOMNode().value = '';
+    var newNote = this.refs.note.value;
+    this.refs.note.value = '';
     this.props.addNote(newNote);
   },
   render: function(){
