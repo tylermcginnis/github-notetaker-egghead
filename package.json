@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.1.18",
     "node-libs-browser": "^0.5.2",
     "webpack": "^1.12.8"
   }
