@@ -6,37 +6,43 @@ var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
 var helpers = require('../utils/helpers');
+var _ = require('lodash');
 
 var Profile = React.createClass({
-  mixins: [Router.State, ReactFireMixin],
-  getInitialState: function(){
-    return {
-      notes: [],
-      bio: {},
-      repos: []
-    }
-  },
-  componentDidMount: function(){
-    this.ref = new Firebase('https://github-note-taker.firebaseio.com');
-    var childRef = this.ref.child(this.getParams().username);
-    this.bindAsArray(childRef, 'notes');
+    mixins: [Router.State, ReactFireMixin],
+    getInitialState: function(){
+        return {
+            notes: [],
+            bio: {},
+            repos: []
+        }
+    },
+    componentDidMount: function(){
+        this.ref = new Firebase('https://github-note-taker.firebaseio.com');
+        var childRef = this.ref.child(this.props.params.username);
+        this.bindAsArray(childRef, 'notes');
 
-    helpers.getGithubInfo(this.getParams().username)
-      .then(function(dataObj){
-        this.setState({
-          bio: dataObj.bio,
-          repos: dataObj.repos
+        helpers.getGithubInfo(this.props.params.username)
+            .then(function(dataObj){
+                this.setState({
+                    bio: dataObj.bio,
+                    repos: dataObj.repos
+                });
+            }.bind(this));
+    },
+    componentWillUnmount: function(){
+        this.unbind('notes');
+    },
+    handleAddNote: function(newNote){
+        var noteArr = [];
+        this.state.notes.forEach(function(note){
+            noteArr.push(_.pick(note, '.value'));
         });
-      }.bind(this));
-  },
-  componentWillUnmount: function(){
-    this.unbind('notes');
-  },
-  handleAddNote: function(newNote){
-    this.ref.child(this.getParams().username).set(this.state.notes.concat([newNote]));
-  },
-  render: function(){
-    var username = this.getParams().username;
+        noteArr.push(newNote);
+        this.ref.child(this.props.params.username).set(noteArr);
+    },
+    render: function(){
+        var username = this.props.params.username;
     return (
       <div className="row">
         <div className="col-md-4">
