@@ -8,8 +8,8 @@ import Rebase from 're-base';
 var base = Rebase.createClass('https://github-note-taker.firebaseio.com/');
 
 class Profile extends React.Component{
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       notes: [],
       bio: {},
@@ -17,23 +17,22 @@ class Profile extends React.Component{
     };
   }
   init(){
-    this.ref = base.bindToState(this.router.getCurrentParams().username, {
+    const {username} = this.props.params;
+    this.ref = base.bindToState(username, {
       context: this,
       asArray: true,
       state: 'notes'
     });
 
-    helpers.getGithubInfo(this.router.getCurrentParams().username)
-      .then((dataObj) => {
-        this.setState({
-          bio: dataObj.bio,
-          repos: dataObj.repos
+    helpers.getGithubInfo(username)
+        .then((dataObj) => {
+          this.setState({
+            bio: dataObj.bio,
+            repos: dataObj.repos
+          });
         });
-      });
   }
-  componentWillMount(){
-    this.router = this.context.router;
-  }
+
   componentDidMount(){
     this.init();
   }
@@ -45,33 +44,30 @@ class Profile extends React.Component{
     this.init();
   }
   handleAddNote(newNote){
-    base.post(this.router.getCurrentParams().username, {
+    const {username} = this.props.params;
+    base.post(username, {
       data: this.state.notes.concat([newNote])
     });
   }
   render(){
-    var username = this.router.getCurrentParams().username;
+    const {username} = this.props.params;
     return (
-      <div className="row">
-        <div className="col-md-4">
-          <UserProfile username={username} bio={this.state.bio}/>
+        <div className="row">
+          <div className="col-md-4">
+            <UserProfile username={username} bio={this.state.bio}/>
+          </div>
+          <div className="col-md-4">
+            <Repos username={username} repos={this.state.repos} />
+          </div>
+          <div className="col-md-4">
+            <Notes
+                username={username}
+                notes={this.state.notes}
+                addNote={this.handleAddNote.bind(this)} />
+          </div>
         </div>
-        <div className="col-md-4">
-          <Repos username={username} repos={this.state.repos} />
-        </div>
-        <div className="col-md-4">
-          <Notes
-            username={username}
-            notes={this.state.notes}
-            addNote={this.handleAddNote.bind(this)} />
-        </div>
-      </div>
     )
   }
-};
-
-Profile.contextTypes = {
-  router: React.PropTypes.func.isRequired
 };
 
 export default Profile;
