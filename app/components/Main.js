@@ -1,5 +1,4 @@
 var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
 var SearchGithub = require('./SearchGithub');
 
 var Main = React.createClass({
@@ -12,7 +11,7 @@ var Main = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <RouteHandler />
+            {this.props.children}
         </div>
       </div>
     )
