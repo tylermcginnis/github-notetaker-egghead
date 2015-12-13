@@ -9,15 +9,18 @@
   "author": "Tyler McGinnis <tylermcginnis33@gmail.com> (http://tylermcginnis.com)",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^2.3.2",
     "history": "^1.13.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.1"
+    "react-router": "^1.0.1",
+    "reactfire": "^0.5.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.13",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13"
+    "babel-preset-react": "^6.3.13",
+    "webpack": "^1.12.9"
   }
 }
