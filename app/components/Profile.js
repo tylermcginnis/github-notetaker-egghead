@@ -59,7 +59,7 @@ class Profile extends React.Component {
           <Notes
             username={this.props.params.username}
             notes={this.state.notes}
-            addNote={() => this.handleAddNote()} />
+            addNote={(newNote) => this.handleAddNote(newNote)} />
         </div>
       </div>
     )
