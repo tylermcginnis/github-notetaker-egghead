@@ -6,7 +6,7 @@ class NotesList extends React.Component {
     return (
       <ul className="list-group">
         {notes.map((note, index) => (
-          <li className="list-group-item" key={index}>{note['.value']}</li>
+          <li className="list-group-item" key={index}>{note}</li>
         ))}
       </ul>
     )
