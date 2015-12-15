@@ -8,8 +8,8 @@ const Repos = ({repos}) => {
         {repos.map((repo, index) => {
           return (
             <li className="list-group-item" key={repo.name}>
-              <h4><a href={repo.html_url}>{repo.name}</a></h4>
-              <p>{repo.description}</p>
+              {repo.html_url && <h4><a href={repo.html_url}>{repo.name}</a></h4>}
+              {repo.description && <p>{repo.description}</p>}
             </li>
           )
         })}
