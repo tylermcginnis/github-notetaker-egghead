@@ -5,6 +5,14 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
+// This probably isn't the right place for this if we want access for the entire app
+var config = {
+  apiKey: '<YOURVALUE>',
+  authDomain: '<YOURVALUE>',
+  databaseURL: '<YOURVALUE>',
+  storageBucket: '<YOURVALUE>',
+};
+Firebase.initializeApp(config);
 
 var Profile = React.createClass({
   mixins: [ReactFireMixin],
@@ -17,10 +25,10 @@ var Profile = React.createClass({
       repos: ['a', 'b', 'c']
     }
   },
-  componentDidMount: function(){
-    this.ref = new Firebase('https://github-note-taker.firebaseio.com/');
+  componentWillMount: function(){
+    this.ref = Firebase.database().ref('usernames');
     var childRef = this.ref.child(this.props.params.username);
-    this.bindAsArray(childRef, 'notes');
+    this.bindAsArray(childRef,'notes');
   },
   componentWillUnmount: function(){
     this.unbind('notes');
